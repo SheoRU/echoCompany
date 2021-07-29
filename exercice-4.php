@@ -26,21 +26,18 @@ function evaluate($expression){
     // TODO : add rendering code here
 	for($i = 0; $i <= count($expression); $i++){
 		if ($expression["type"] == "add"){
-			
 		    $summ += ($expression["children"][$i]["value"]);
 
             if ($expression["children"][1]["type"] == "fraction"){
-
                 $summ += ($expression['children'][1]["top"]["value"] / $expression['children'][1]["bottom"]["value"]);
-                $secondExample=$expression["children"]["0"]["value"]." + "."<div class='example'> <span>".($expression["children"]["1"]["top"]["value"]."</span>"."<span class=bottom>".$expression["children"]["1"]["bottom"]["value"]."</span></div>");
+                $secondExample = $expression["children"]["0"]["value"]." + "."<div class='example'> <span>".($expression["children"]["1"]["top"]["value"]."</span>"."<span class=bottom>".$expression["children"]["1"]["bottom"]["value"]."</span></div>");
                 echo "<div>".$secondExample;
                 return $summ;
-
             }
                 
 		}
     }
-    $firstExample=$expression["children"][0]["value"]." + ".$expression["children"][1]["value"]." + ".$expression["children"][2]["value"];
+    $firstExample = $expression["children"][0]["value"]." + ".$expression["children"][1]["value"]." + ".$expression["children"][2]["value"];
     echo "<div>".$firstExample;
     return $summ;
 }
@@ -63,7 +60,6 @@ $expression1 = [
     ]
 ];
 
-// 1 + 100 / 1000
 $expression2 = [
     "type" => "add",
     'children'=> [
@@ -90,4 +86,3 @@ echo $firstExample." = " . evaluate($expression1)."</div>";
 echo $secondExample." = ". evaluate($expression2)."</div>";
 echo "</div>";
 ?>
-

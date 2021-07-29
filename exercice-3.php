@@ -8,7 +8,6 @@
 <?php
 
 function evaluate($expression){
-    // TODO : add rendering code here
 	for($i = 0; $i <= count($expression); $i++){
 		if ($expression["type"] == "add"){
 			

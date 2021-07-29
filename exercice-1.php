@@ -4,16 +4,12 @@ function evaluate($expression){
     // TODO : add rendering code here
 	for($i = 0; $i <= count($expression); $i++){
 		if ($expression["type"] == "add"){
-			
 		    $summ += ($expression["children"][$i]["value"]);
 			
             if ($expression["children"][1]["type"] == "multiply"){
-
                     $summ += ($expression['children'][1]["children"][0]["value"] * ($expression['children'][1]["children"][1]["children"][0]["value"] + $expression['children'][1]["children"][1]["children"][1]["value"]));
                     return $summ;
-
             } elseif ($expression["children"][1]["type"] == "fraction") {
-
                 $summ += ($expression['children'][1]["top"]["value"] / $expression['children'][1]["bottom"]["value"]);
                 return $summ;
             }
@@ -99,7 +95,6 @@ $expression3 = [
         ]
     ]
 ];
-
 
 echo "Expression 1 evaluates to: " . evaluate($expression1) . " <br>";
 echo "Expression 2 evaluates to: " . evaluate($expression2) . " <br>";
