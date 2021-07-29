@@ -1,4 +1,11 @@
 <style>
+      .container{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 250px;
+        font-size:60px;
+    }
     .example{
         vertical-align: middle;
         text-align:center;
@@ -24,25 +31,43 @@ interface expression_tree_node {
 
     public function evaluate($expression);
     
-    public function render($a,$b,$c,$d);
+    public function render($a,$b,$c,$symbol);
     
 }
+
 class calculated implements expression_tree_node
 {
-    public function evaluate($expression){
-        $sum="123";
-        echo $sum;
+
+    public function evaluate($expression){ 
+        for($i = 0; $i <= count($expression); $i++){
+            if ($expression["type"] == "add"){
+                $summ += ($expression["children"][$i]["value"]);                    
+            }
+        }
+        if ($expression["children"][1]["type"] == "fraction"){
+            $summ += ($expression['children'][1]["top"]["value"] / $expression['children'][1]["bottom"]["value"]);
+            echo "<span class=firstElem> = ".$summ."</span></div>";
+            return;
+        }
+        echo "<span class=firstElem> = ".$summ."</span></div>";
+        return;
     }
-    public function render($a,$b,$c,$d)
+
+    public function render($a,$b,$c,$symbol)
     {
-        if ($d == "fraction"){
-            echo "<span class=firstElem> $a + </span> <div class='example'> <span>$b</span><span class=bottom>$c</span>=
+        echo "<div>";   
+        //symbol==fraction||add
+
+        if ($symbol == "fraction"){
+            echo "<span class=firstElem> $a + </span> <div class='example'> <span>$b</span><span class=bottom>$c</span>
             </div></span>";
-        }else{
+        }elseif ($symbol == "add"){
             echo "<span class=firstElem>$a + $b + $c</span>";
         }
     }
 }
+
+echo "<div class=container>";
 
 $expression1 = [
     "type" => "add",
@@ -86,4 +111,10 @@ $expression2 = [
 ];
 
 $firstExample=new calculated;
-$firstExample->render(350,350,300,"fraction");
+$firstExample->render(350,350,300,"add");
+$firstExample->evaluate($expression1);
+
+$secondExample=new calculated;
+$secondExample->render(5,50,2,"fraction");
+$secondExample->evaluate($expression2);
+?>
